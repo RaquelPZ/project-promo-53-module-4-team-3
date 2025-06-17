@@ -10,5 +10,5 @@ export default defineConfig({
       usePolling: true,
     },
   },
-  base: "/project-promo-53-module-3-team-2/",
+  base: "/",
 });
