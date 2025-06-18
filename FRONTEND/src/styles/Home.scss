@@ -2,8 +2,8 @@
   text-align: center;
   padding: 3rem;
   min-height: 100vh; // ocupa el alto completo de la pantalla
-  display: flex;
-  flex-direction: column;
+  display: flex;}
+
 
   .main {
     display: block;
@@ -37,4 +37,4 @@
       transform: scale(1.4);
     }
   }
-}
+
