@@ -35,7 +35,7 @@ function Card(props) {
       </div>
 
       <div className="card__project">
-        <h3 className="card__name">{props.name || "Elegant Workspace"}</h3>
+        <h3 className="card__name-pro">{props.name || "Elegant Workspace"}</h3>
         <p className="card__slogan">{props.slogan || "Diseños Exclusivos"}</p>
         <h3 className="card__descriptionTitle">Product description</h3>
         <p className="card__description">

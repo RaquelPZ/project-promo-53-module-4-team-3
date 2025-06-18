@@ -12,7 +12,7 @@
   --color-dark: #302c42;
   --color-warm-grey: #909090;
   --color-white: #ffffff;
-  --color-dark-lilac: #8176af;
+  --color-dark-lilac: rgb(61, 195, 181);
   --color-white-50: rgba(255, 255, 255, 0.5);
 
   /* FONTS */
@@ -159,8 +159,8 @@
       var(--color-white)
     ),
     linear-gradient(to bottom, var(--color-white) 0%, rgba(0, 0, 0, 0));
-  background-origin: border-box;
-  background-clip: content-box, border-box;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 }
 
 .card .card__projectTitle {
@@ -224,9 +224,17 @@
   font-weight: 400;
   margin-bottom: 0.2rem;
   padding-inline: 0.75rem;
+   text-align: center;
 }
 
 .card .card__name {
+  font: var(--font-card-title);
+  margin-bottom: 0.2rem;
+  color: #56006b;
+  font-weight: 500;
+  text-align: center;
+}
+.card .card__name-pro {
   font: var(--font-card-title);
   margin-bottom: 0.2rem;
   color: #56006b;
@@ -268,7 +276,7 @@
 /* FORM */
 
 .addForm {
-  margin: 0 20px 5px 20px;
+  margin: 0 20px 50px 20px;
   box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: solid 1px rgba(0, 0, 0, 0);
   background-image: radial-gradient(
@@ -292,6 +300,8 @@
 
   font: var(--font-title-medium);
   text-align: center;
+  color: var(--color-dark-lilac);
+  font-weight: 350;
 }
 
 .addForm .addForm__title:before {
@@ -389,7 +399,6 @@
   padding: 10px 20px;
   color: var(--color-white);
   font: var(--font-button);
-  text-transform: uppercase;
   text-decoration: none;
 
   -webkit-backdrop-filter: blur(10px);
@@ -397,14 +406,17 @@
   border-style: solid;
   border-width: 1px;
   border-image-source: linear-gradient(to bottom, #2a2a2a 0%, rgba(0, 0, 0, 0));
-  border-image-slice: 1;
-  border-radius: 25px;
-  background-color: rgb(61, 195, 181);
-  /*
-  background-image: linear-gradient(to bottom, var(--color-dark-lilac), var(--color-dark-lilac)), linear-gradient(to bottom, #2a2a2a 0%, rgba(0, 0, 0, 0));
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  */
+  border-radius: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  align-content: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+  background-image: linear-gradient(
+    to right,
+    var(--color-dark-lilac) -2%,
+    #c0b7e8 98%
+  );
 }
 
 .button {
@@ -413,7 +425,7 @@
   max-width: 150px;
 
   margin: 8px;
-  padding: 5px 18px;
+  padding: 10px 20px;
   color: var(--color-white);
   font: var(--font-button);
   text-transform: none;
@@ -421,6 +433,12 @@
   text-align: center;
 
   border-radius: 40px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  align-content: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
   background-image: linear-gradient(
     to right,
     var(--color-dark-lilac) -2%,
@@ -432,26 +450,31 @@
 
 .button--large {
   display: block;
-  width: 145px;
+  width: fit-content;
 
   margin-inline: auto;
   margin-block: 8px;
-  padding: 5px 18px;
+  padding: 10px 20px;
   color: var(--color-white);
   font: var(--font-button);
-  text-transform: none;
   text-decoration: none;
-  text-align: center;
 
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-style: solid;
+  border-width: 1px;
+  border-image-source: linear-gradient(to bottom, #2a2a2a 0%, rgba(0, 0, 0, 0));
   border-radius: 40px;
-  background-color: transparent;
+  text-transform: uppercase;
+  text-align: center;
+  align-content: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
   background-image: linear-gradient(
     to right,
     var(--color-dark-lilac) -2%,
     #c0b7e8 98%
   );
-
-  cursor: pointer;
 }
 
 .button--large:hover {
