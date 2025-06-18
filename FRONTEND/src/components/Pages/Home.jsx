@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../styles/Home.scss";
+import Card from "../preview/Card";
+import lastProjects from "../data/projects.json";
 
 function Home() {
   return (
@@ -11,6 +13,24 @@ function Home() {
             Ir a crear mi Tarjeta
           </Link>
         </div>
+        <ul className="card-list">
+          {lastProjects.map((projectObj) => (
+            <li key={projectObj.autor}>
+              <Card
+                name={projectObj.name}
+                slogan={projectObj.slogan}
+                desc={projectObj.desc}
+                technologies={projectObj.technologies}
+                demo={projectObj.demo}
+                repo={projectObj.repo}
+                autor={projectObj.autor}
+                job={projectObj.job}
+                photo={projectObj.photo}
+                image={projectObj.image}
+              />
+            </li>
+          ))}
+        </ul>
       </main>
     </div>
   );

@@ -17,9 +17,9 @@ function App() {
     <div className="container">
       <Header iconLaptop={iconLaptop} logoAdalab={logoAdalab} />
 
-      <Link to="/" className="btnBack">
+      {/*   <Link to="/" className="btnBack">
         Volver a inicio
-      </Link>
+      </Link> */}
 
       <main className="main">
         <Routes>
