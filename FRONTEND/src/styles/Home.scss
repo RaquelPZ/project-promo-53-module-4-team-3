@@ -6,7 +6,7 @@
 }
 
 .main {
-  display: block;
+  // display: block;
   /*  flex: 1; */
 }
 
@@ -52,7 +52,6 @@ h1 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-
 
   li {
     list-style: none;

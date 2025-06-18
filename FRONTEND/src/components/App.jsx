@@ -1,5 +1,5 @@
 import "../styles/App.scss";
-import "../styles/Home.scss";
+// import "../styles/Home.scss";
 import "../images/icons/github.svg";
 import iconLaptop from "../images/laptop-code-solid.svg";
 import logoAdalab from "../images/adalab.png";
