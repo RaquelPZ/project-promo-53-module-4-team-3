@@ -59,7 +59,7 @@ function CreatePage() {
       });
   };
   return (
-    <>
+    <main className="main_create">
       <Hero />
 
       <Preview
@@ -73,7 +73,7 @@ function CreatePage() {
         changePhoto={changePhoto}
         changeImage={changeImage}
       />
-    </>
+    </main>
   );
 }
 

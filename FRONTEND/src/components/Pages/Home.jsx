@@ -6,7 +6,7 @@ import lastProjects from "../data/projects.json";
 function Home() {
   return (
     <div className="container home">
-      <main className="main">
+      <main className="main_home">
         <h1>Bienvenida a la App de Tarjeta de Proyecto</h1>
         <div className="container-link">
           <Link className="home_link" to="/create">

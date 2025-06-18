@@ -21,7 +21,7 @@ function App() {
         Volver a inicio
       </Link> */}
 
-      <main className="main">
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<CreatePage />} />
