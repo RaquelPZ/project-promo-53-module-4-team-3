@@ -40,6 +40,10 @@
   :root {
     font-size: 12px;
   }
+  .card{
+      height: 300px;
+      //rachel prueba
+  }
 }
 
 @media screen and (min-width: 560px) {
@@ -150,8 +154,8 @@
       var(--color-white)
     ),
     linear-gradient(to bottom, var(--color-white) 0%, rgba(0, 0, 0, 0));
-  background-origin: border-box;
-  background-clip: content-box, border-box;
+      background-origin: border-box;
+      background-clip: content-box, border-box;
 }
 
 .card .card__projectTitle {
@@ -188,6 +192,9 @@
   padding-inline: 0.1em;
   z-index: 1;
   background-color: var(--color-white);
+  color:  #3d004c;
+  letter-spacing: 0.12rem;
+  // text-transform: uppercase;
 }
 
 .card .card__author {
@@ -204,32 +211,40 @@
   background-image: url("../images/avatar.webp");
   background-position: center;
   background-size: cover;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.75rem;
 }
 
 .card .card__job {
+  color: #403a5f;
+  font-weight: 400;
   margin-bottom: 0.2rem;
-  padding: 0.2rem;
+  padding-inline: 0.75rem;
 }
 
 .card .card__name {
   font: var(--font-card-title);
   margin-bottom: 0.2rem;
+  color: #56006b;
+  font-weight: 500;
 }
 
 .card .card__project {
   margin-right: 10px;
+  padding: 0.25rem;
 }
 
 .card .card__slogan {
   font: var(--font-card-subtitle);
   margin-top: -0.2rem;
   margin-bottom: 0.8rem;
+  color: #9f63ae;
+  font-style: oblique;
 }
 
 .card .card__descriptionTitle {
   font-weight: inherit;
   text-transform: capitalize;
+  margin-bottom: 0.2em;
 }
 
 .card .card__technicalInfo {
@@ -450,10 +465,12 @@
 }
 
 .icon__www {
+  background-color: #e1a4ff;
   background-image: url("../images/icons/globe-solid.svg");
 }
 
 .icon__github {
+  background-color: #e1a4ff;
   background-image: url("../images/icons/github.svg");
 }
 
