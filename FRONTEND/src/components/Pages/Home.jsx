@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import "../../styles/Home.scss";
 import Card from "../preview/Card";
-import lastProjects from "../data/projects.json";
 
-function Home() {
+function Home({ projects }) {
   return (
     <div className="container home">
       <main className="main_home">
@@ -14,7 +13,7 @@ function Home() {
           </Link>
         </div>
         <ul className="card-list">
-          {lastProjects.map((projectObj) => (
+          {projects.map((projectObj) => (
             <li key={projectObj.autor}>
               <Card
                 name={projectObj.name}
