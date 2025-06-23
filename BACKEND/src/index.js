@@ -16,7 +16,11 @@ server.listen(port, () => {
 });
 
 server.get("/api/projects", (req, res) => {
-  res.json([
+  console.log("Holis");
+
+  /* res.sendFile(path.join(__dirname, "../FRONTEND/src/data/projects.json")); */
+
+  const results = [
     {
       name: "Proyecto 1",
       slogan: "Slogan",
@@ -71,7 +75,13 @@ server.get("/api/projects", (req, res) => {
         "https://www.ldhmsoftware.com/wp-content/uploads/2023/11/0_cl7fc6pt1MHjIF4K-1024x622.png",
       image: "https://avatars.githubusercontent.com/u/185409586?v=4",
     },
-  ]);
+  ];
+
+  res.json(results);
 });
 
-server.post("/api/projects", (req, res) => {});
+//server.post("/api/projects", (req, res) => {});
+
+server.post("/api/projects", (req, res) => {
+  console.log("Holis", req.body);
+});

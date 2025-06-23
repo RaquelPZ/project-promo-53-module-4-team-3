@@ -16,17 +16,46 @@ import Home from "./Pages/Home";
 
 function App() {
   const [projects, setProjects] = useState([]);
+  const [cardInfo, setCardInfo] = useState("");
 
   // Listado de proyectos
-  useEffect(() => {
-    fetch("https://localhost:4000/api/projects")
+  /*   useEffect(() => {
+    fetch("http://localhost:4000/api/projects")
       .then((res) => res.json())
       .then((projectsData) => {
         setProjects(projectsData);
       });
-  }, []);
+  }, []); */
 
-  /* fetch("https://localhost:4000/api/projects/", { method: "POST" }); */ // <-- Enviar datos de un nuevo proyecto
+  useEffect(() => {
+    const handleSubmit = (ev) => {
+    ev.preventDefault();
+
+    fetch("https://dev.adalab.es/api/projectCard", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(objToSend),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("URL de la tarjeta del proyecto:", data.cardURL);
+        setCardInfo(data.cardURL);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error al generar la tarjeta del proyecto:", error);
+      });
+
+    return;
+  }
+  //Copiar el objToSend de nuestro proyecto
+  //Copiar el useEffect de nuestro proyecto
+
+
+
+
   return (
     <div className="container">
       <Header iconLaptop={iconLaptop} logoAdalab={logoAdalab} />
@@ -38,7 +67,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home projects={projects} />} />
-          <Route path="/create" element={<CreatePage />} />
+          <Route path="/create" element={<CreatePage cardInfo={cardInfo} />} />
         </Routes>
       </main>
       <Footer logoAdalab={logoAdalab} />

@@ -4,7 +4,7 @@ import Preview from "../preview/Preview";
 
 import Form from "../Form/Form";
 
-function CreatePage() {
+function CreatePage({ cardInfo }) {
   const [formData, setFormData] = useState({
     name: "",
     slogan: "",
@@ -48,7 +48,7 @@ function CreatePage() {
     event.preventDefault();
     console.log("handleSubmit");
 
-    fetch("https://dev.adalab.es/api/projectCard/", {
+    fetch("http://localhost:4000/api/projects/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -72,6 +72,7 @@ function CreatePage() {
         handleSubmit={handleSubmit}
         changePhoto={changePhoto}
         changeImage={changeImage}
+        cardInfo={cardInfo}
       />
     </main>
   );
