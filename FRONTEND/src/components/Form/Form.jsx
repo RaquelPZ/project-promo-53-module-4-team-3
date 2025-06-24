@@ -2,15 +2,17 @@ import PhotoButton from "../preview/PhotoButton";
 
 function Form(props) {
   const handleInput = (ev) => {
-    const formData = ev.target.id;
+    const field = ev.target.id;
     const value = ev.target.value;
-
-    props.changeToAnotherState(formData, value);
+    props.changeToAnotherState(field, value);
   };
 
   return (
     <>
-      <form className="addForm" onSubmit={props.handleSubmit}>
+      <form
+        className="addForm"
+        //  onSubmit={props.handleSubmit}
+      >
         <h2 className="title">Información</h2>
         <fieldset className="addForm__group">
           <legend className="addForm__title">
@@ -22,7 +24,7 @@ function Form(props) {
             name="name"
             id="name"
             placeholder="Nombre del proyecto"
-            onInput={handleInput}
+            onChange={handleInput}
           />
           <input
             className="addForm__input"
@@ -30,7 +32,7 @@ function Form(props) {
             name="slogan"
             id="slogan"
             placeholder="Slogan"
-            onInput={handleInput}
+            onChange={handleInput}
           />
           <div className="addForm__2col">
             <input
@@ -39,7 +41,7 @@ function Form(props) {
               name="repo"
               id="repo"
               placeholder="Repositorio"
-              onInput={handleInput}
+              onChange={handleInput}
             />
             <input
               className="addForm__input"
@@ -47,7 +49,7 @@ function Form(props) {
               name="demo"
               id="demo"
               placeholder="Demo"
-              onInput={handleInput}
+              onChange={handleInput}
             />
           </div>
           <input
@@ -56,7 +58,7 @@ function Form(props) {
             name="technologies"
             id="technologies"
             placeholder="Tecnologías"
-            onInput={handleInput}
+            onChange={handleInput}
           />
           <textarea
             className="addForm__input"
@@ -65,7 +67,7 @@ function Form(props) {
             id="desc"
             placeholder="Descripción"
             rows="5"
-            onInput={handleInput}
+            onChange={handleInput}
           ></textarea>
         </fieldset>
 
@@ -77,7 +79,7 @@ function Form(props) {
             name="autor"
             id="autor"
             placeholder="Nombre"
-            onInput={handleInput}
+            onChange={handleInput}
           />
           <input
             className="addForm__input"
@@ -85,7 +87,7 @@ function Form(props) {
             name="job"
             id="job"
             placeholder="Trabajo"
-            onInput={handleInput}
+            onChange={handleInput}
           />
         </fieldset>
 
@@ -99,7 +101,11 @@ function Form(props) {
             text="Subir foto de la autora"
           />
 
-          <button type="submit" className="button--large">
+          <button
+            type="submit"
+            className="button--large"
+            onClick={props.handleSubmit}
+          >
             Guardar proyecto
           </button>
         </fieldset>

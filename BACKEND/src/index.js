@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+// const mysql = require("mysql2/promise");
 
 // Creamos una vari con el servidor
 const server = express();
@@ -16,7 +17,13 @@ server.listen(port, () => {
 });
 
 server.get("/api/projects", (req, res) => {
-  console.log("Holis");
+  // 1. Conectarnos a la base de datos
+
+  // 2. Lanzamos un SELECT y recuperamos los datos como JSON
+
+  // 3. Cerramos la conexión
+
+  // 4. Devolvemos en la respuesta (res) el JSON
 
   /* res.sendFile(path.join(__dirname, "../FRONTEND/src/data/projects.json")); */
 

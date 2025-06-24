@@ -1,4 +1,4 @@
-function Card(props) {
+function Card({ formData }) {
   return (
     <article className="card">
       <h2 className="card__projectTitle">
@@ -9,23 +9,23 @@ function Card(props) {
         <div
           className="card__authorPhoto"
           style={{
-            backgroundImage: props.image ? `url(${props.image})` : null,
+            backgroundImage: formData.image ? `url(${formData.image})` : null,
           }}
         ></div>
-        <p className="card__job">{props.job || "Full stack Developer"}</p>
-        <h3 className="card__name">{props.autor || "Emmelie Bjôrklund"}</h3>
+        <p className="card__job">{formData.job || "Full stack Developer"}</p>
+        <h3 className="card__name">{formData.autor || "Emmelie Bjôrklund"}</h3>
         <div className="card-icons">
           <a
             className="icon icon__www"
-            href={props.repo}
+            href={formData.repo}
             target="_blank"
             title="Haz click para ver el proyecto online"
           >
-            {props.demo || "Web link"}
+            {formData.demo || "Web link"}
           </a>
           <a
             className="icon icon__github"
-            href={props.demo}
+            href={formData.demo}
             target="_blank"
             title="Haz click para ver el código del proyecto"
           >
@@ -35,17 +35,21 @@ function Card(props) {
       </div>
 
       <div className="card__project">
-        <h3 className="card__name-pro">{props.name || "Elegant Workspace"}</h3>
-        <p className="card__slogan">{props.slogan || "Diseños Exclusivos"}</p>
+        <h3 className="card__name-pro">
+          {formData.name || "Elegant Workspace"}
+        </h3>
+        <p className="card__slogan">
+          {formData.slogan || "Diseños Exclusivos"}
+        </p>
         <h3 className="card__descriptionTitle">Product description</h3>
         <p className="card__description">
-          {props.desc ||
+          {formData.desc ||
             "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, quos? Itaque, molestias eveniet laudantium adipisci vitae ratione"}
         </p>
 
         <div className="card__technicalInfo">
           <p className="card__technologies">
-            {props.technologies || "React JS - HTML - CSS"}
+            {formData.technologies || "React JS - HTML - CSS"}
           </p>
         </div>
       </div>

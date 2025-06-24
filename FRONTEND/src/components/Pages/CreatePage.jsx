@@ -1,63 +1,16 @@
-import { useState, useEffect } from "react";
 import Hero from "../Hero";
 import Preview from "../preview/Preview";
 
 import Form from "../Form/Form";
 
-function CreatePage({ cardInfo }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    slogan: "",
-    repo: "",
-    demo: "",
-    technologies: "",
-    desc: "",
-    autor: "",
-    job: "",
-    image: "",
-    photo: "",
-  });
-  useEffect(() => {
-    const { photo, image, ...rest } = formData;
-    localStorage.setItem("formData", JSON.stringify(rest));
-  }, [formData]);
-
-  const changePhoto = (uploadedPhoto) => {
-    setFormData({
-      ...formData,
-      photo: uploadedPhoto,
-    });
-  };
-
-  const changeImage = (uploadedImage) => {
-    setFormData({
-      ...formData,
-      image: uploadedImage,
-    });
-  };
-  const changeToAnotherState = (field, value) => {
-    if (field) {
-      const newFormData = {
-        ...formData,
-        [field]: value,
-      };
-      setFormData(newFormData);
-    }
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("handleSubmit");
-
-    fetch("http://localhost:4000/api/projects/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((dataResponse) => {
-        console.log(dataResponse);
-      });
-  };
+function CreatePage({
+  handleSubmit,
+  formData,
+  changeToAnotherState,
+  changeImage,
+  changePhoto,
+  cardInfo,
+}) {
   return (
     <main className="main_create">
       <Hero />

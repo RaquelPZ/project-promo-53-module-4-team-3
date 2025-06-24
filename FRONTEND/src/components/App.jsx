@@ -18,43 +18,80 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [cardInfo, setCardInfo] = useState("");
 
+  const [formData, setFormData] = useState({
+    name: "",
+    slogan: "",
+    repo: "",
+    demo: "",
+    technologies: "",
+    desc: "",
+    autor: "",
+    job: "",
+    image: "",
+    photo: "",
+  });
+  useEffect(() => {
+    const { photo, image, ...rest } = formData;
+    localStorage.setItem("formData", JSON.stringify(rest));
+  }, [formData]);
+
+  const changePhoto = (uploadedPhoto) => {
+    setFormData({
+      ...formData,
+      photo: uploadedPhoto,
+    });
+  };
+
+  const changeImage = (uploadedImage) => {
+    setFormData({
+      ...formData,
+      image: uploadedImage,
+    });
+  };
+  const changeToAnotherState = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+  };
+
+  localStorage.setItem("newProject", JSON.stringify(formData));
+
+  const [newProject, setNewProject] = useState(
+    JSON.parse(localStorage.getItem("newProject"))
+  );
+
   // Listado de proyectos
-  /*   useEffect(() => {
+  useEffect(() => {
     fetch("http://localhost:4000/api/projects")
       .then((res) => res.json())
       .then((projectsData) => {
         setProjects(projectsData);
       });
-  }, []); */
+  }, []);
 
-  useEffect(() => {
-    const handleSubmit = (ev) => {
+  const handleSubmit = (ev) => {
     ev.preventDefault();
 
-    fetch("https://dev.adalab.es/api/projectCard", {
+    fetch("http://localhost:4000/api/projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(objToSend),
+      body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("URL de la tarjeta del proyecto:", data.cardURL);
-        setCardInfo(data.cardURL);
-        console.log(data);
+      .then((res) => res.json())
+      .then((dataResponse) => {
+        console.log("URL de la tarjeta del proyecto:", dataResponse.cardURL);
+        setCardInfo(dataResponse.cardURL);
+        console.log(dataResponse);
       })
       .catch((error) => {
         console.error("Error al generar la tarjeta del proyecto:", error);
       });
 
     return;
-  }
+  };
+
   //Copiar el objToSend de nuestro proyecto
   //Copiar el useEffect de nuestro proyecto
-
-
-
 
   return (
     <div className="container">
@@ -67,7 +104,19 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home projects={projects} />} />
-          <Route path="/create" element={<CreatePage cardInfo={cardInfo} />} />
+          <Route
+            path="/create"
+            element={
+              <CreatePage
+                handleSubmit={handleSubmit}
+                formData={formData}
+                changeToAnotherState={changeToAnotherState}
+                changePhoto={changePhoto}
+                changeImage={changeImage}
+                cardInfo={cardInfo}
+              />
+            }
+          />
         </Routes>
       </main>
       <Footer logoAdalab={logoAdalab} />
