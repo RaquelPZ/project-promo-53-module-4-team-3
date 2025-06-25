@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-// const mysql = require("mysql2/promise");
+const mysql = require("mysql2/promise");
 
 // Creamos una vari con el servidor
 const server = express();
@@ -10,23 +10,50 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
+// Conexin a la base de datos
+
+async function getConnection() {
+  const datosConexion = {
+    host: process.env.MYSQL_HOST,
+    port: process.env.MYSQL_PORT,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+  };
+  const conexion = await mysql.createConnection(datosConexion);
+  await conexion.connect();
+  return conexion;
+}
+
 // Arrancamos el servidor en el puerto 4000
 const port = 4000;
 server.listen(port, () => {
   console.log(`Servidor iniciado <http://localhost:${port}>`);
 });
 
-server.get("/api/projects", (req, res) => {
+server.get("/api/projects", async (req, res) => {
   // 1. Conectarnos a la base de datos
+
+  const conn = await getConnection();
 
   // 2. Lanzamos un SELECT y recuperamos los datos como JSON
 
+  // const [results] = await conn.query {
+  //   `SELECT *
+  //     FROM projects p
+  //     JOIN authors a ON (p.id = a.fk_project);`
+  // };
+
   // 3. Cerramos la conexión
+
+  await conn.end();
 
   // 4. Devolvemos en la respuesta (res) el JSON
 
-  /* res.sendFile(path.join(__dirname, "../FRONTEND/src/data/projects.json")); */
+  res.json(results);
 
+  /* res.sendFile(path.join(__dirname, "../FRONTEND/src/data/projects.json")); */
+  /*
   const results = [
     {
       name: "Proyecto 1",
@@ -85,6 +112,7 @@ server.get("/api/projects", (req, res) => {
   ];
 
   res.json(results);
+  */
 });
 
 //server.post("/api/projects", (req, res) => {});
