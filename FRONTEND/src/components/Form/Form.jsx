@@ -11,7 +11,7 @@ function Form(props) {
     <>
       <form
         className="addForm"
-        //  onSubmit={props.handleSubmit}
+        onSubmit={props.handleSubmit}
       >
         <h2 className="title">Información</h2>
         <fieldset className="addForm__group">
@@ -108,20 +108,22 @@ function Form(props) {
           >
             Guardar proyecto
           </button>
+          {props.cardInfo ? (
+            <a className="link"
+              href={props.cardInfo}
+              target="_blank">
+              {props.cardInfo}
+            </a>
+          ) :
+            (
+              <p className="link">
+                Debes rellenar todos los campos del formulario para generar tu
+                tarjeta.
+              </p>
+            )}
         </fieldset>
       </form>
-      <div>
-        cardInfo ? (
-        <a className="link" href={props.cardInfo} target="_blank">
-          {props.cardInfo}
-        </a>
-        ) : (
-        <p className="link">
-          Debes rellenar todos los campos del formulario para generar tu
-          tarjeta.
-        </p>
-        )
-      </div>
+
     </>
   );
 }

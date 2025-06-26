@@ -117,6 +117,15 @@ server.get("/api/projects", async (req, res) => {
 
 //server.post("/api/projects", (req, res) => {});
 
-server.post("/api/projects", (req, res) => {
+server.post("/api/projects", async (req, res) => {
   console.log("Holis", req.body);
+  if (req.body.name === '') {
+    res.json(
+      {
+        sucess: false,
+        error: 'Falta rellenar.'
+      });
+    return;
+  }
+  const conn = await getConnection();
 });
