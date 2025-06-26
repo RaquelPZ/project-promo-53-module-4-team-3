@@ -38,11 +38,13 @@ server.get("/api/projects", async (req, res) => {
 
   // 2. Lanzamos un SELECT y recuperamos los datos como JSON
 
-  // const [results] = await conn.query {
-  //   `SELECT *
-  //     FROM projects p
-  //     JOIN authors a ON (p.id = a.fk_project);`
-  // };
+  const [results] = await conn.query(
+    `SELECT *
+      FROM projects p
+      JOIN authors a ON (p.id = a.id) WHERE P.ID = ?;`,
+    [req.params.id]
+  );
+  console.log("Resultados de la consulta:", results);
 
   // 3. Cerramos la conexión
 
@@ -115,17 +117,50 @@ server.get("/api/projects", async (req, res) => {
   */
 });
 
-//server.post("/api/projects", (req, res) => {});
-
 server.post("/api/projects", async (req, res) => {
-  console.log("Holis", req.body);
-  if (req.body.name === '') {
-    res.json(
-      {
-        sucess: false,
-        error: 'Falta rellenar.'
-      });
+  console.log("Petición recibida", req.body);
+
+  if (req.body.name === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar.",
+    });
     return;
   }
+
   const conn = await getConnection();
+
+  // INSERT en la bbdd
+
+  const [resultsInsertProject] = await conn.execute(
+    `INSERT INTO projects (name, slogan, desc, technologies, demo, repo)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+    [
+      req.body.name,
+      req.body.slogan,
+      req.body.desc,
+      req.body.technologies,
+      req.body.demo,
+      req.body.repo,
+      req.body.photo,
+    ]
+  );
+
+  console.log("Resultado de la inserción:", resultsInsertProject);
+
+  const projectId = resultsInsertProject.insertId;
+
+  const [resultsInsertAuthor] = await conn.execute(
+    `INSERT INTO authors (author, job, image, fk_project)
+    VALUES (?, ?, ?, ?)`,
+    [req.body.author, req.body.job, req.body.image, projectId]
+  );
+  console.log("Resultado de la inserción del autor:", resultsInsertAuthor);
+
+  await conn.end();
+
+  res.json({
+    success: true,
+    cardURL: "http://localhost:4000/projects/" + projectId,
+  });
 });
