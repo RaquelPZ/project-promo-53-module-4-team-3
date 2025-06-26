@@ -16,7 +16,7 @@ import Home from "./Pages/Home";
 
 function App() {
   const [projects, setProjects] = useState([]);
-  const [cardInfo, setCardInfo] = useState("");
+  const [cardURL, setcardURL] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -80,7 +80,7 @@ function App() {
       .then((res) => res.json())
       .then((dataResponse) => {
         console.log("URL de la tarjeta del proyecto:", dataResponse.cardURL);
-        setCardInfo(dataResponse.cardURL);
+        setcardURL(dataResponse.cardURL);
         console.log(dataResponse);
       })
       .catch((error) => {
@@ -113,7 +113,7 @@ function App() {
                 changeToAnotherState={changeToAnotherState}
                 changePhoto={changePhoto}
                 changeImage={changeImage}
-                cardInfo={cardInfo}
+                cardURL={cardURL}
               />
             }
           />

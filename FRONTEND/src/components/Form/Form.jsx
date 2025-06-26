@@ -9,10 +9,7 @@ function Form(props) {
 
   return (
     <>
-      <form
-        className="addForm"
-        onSubmit={props.handleSubmit}
-      >
+      <form className="addForm" onSubmit={props.handleSubmit}>
         <h2 className="title">Información</h2>
         <fieldset className="addForm__group">
           <legend className="addForm__title">
@@ -108,7 +105,21 @@ function Form(props) {
           >
             Guardar proyecto
           </button>
-          {props.cardInfo ? (
+
+          {props.responseServer?.success === true && (
+            <a href={props.responseServer.cardURL}>
+              {(props.responseServer, props.cardURL)}
+            </a>
+          )}
+
+          {props.responseServer?.success === false && (
+            <p>
+             
+              {props.responseServer.error} 
+            </p>
+          )}
+
+          {/* {props.cardInfo ? (
             <a className="link"
               href={props.cardInfo}
               target="_blank">
@@ -120,10 +131,9 @@ function Form(props) {
                 Debes rellenar todos los campos del formulario para generar tu
                 tarjeta.
               </p>
-            )}
+            )} */}
         </fieldset>
       </form>
-
     </>
   );
 }
