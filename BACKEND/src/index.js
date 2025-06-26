@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const mysql = require("mysql2/promise");
+require("dotenv").config();
 
 // Creamos una vari con el servidor
 const server = express();
