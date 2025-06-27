@@ -103,7 +103,10 @@ function App() {
 
       <main>
         <Routes>
-          <Route path="/" element={<Home projects={projects} />} />
+          <Route
+            path="/"
+            element={<Home projects={projects} formData={formData} />}
+          />
           <Route
             path="/create"
             element={

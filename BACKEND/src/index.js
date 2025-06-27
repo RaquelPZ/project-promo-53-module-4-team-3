@@ -21,6 +21,9 @@ async function getConnection() {
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
   };
+
+  console.log(datosConexion);
+
   const conexion = await mysql.createConnection(datosConexion);
   await conexion.connect();
   return conexion;
@@ -41,9 +44,8 @@ server.get("/api/projects", async (req, res) => {
 
   const [results] = await conn.query(
     `SELECT *
-      FROM projects p
-      JOIN authors a ON (p.id = a.id) WHERE P.ID = ?;`,
-    [req.params.id]
+      FROM proyectos p
+      JOIN authors a ON (p.id = a.fk_projects);`
   );
   console.log("Resultados de la consulta:", results);
 
@@ -163,5 +165,38 @@ server.post("/api/projects", async (req, res) => {
   res.json({
     success: true,
     cardURL: "http://localhost:4000/projects/" + projectId,
+  });
+});
+
+server.get("/api/projects/:id", async (req, res) => {
+  // 1. Conectarnos a la base de datos
+
+  const conn = await getConnection();
+
+  // 2. Lanzamos un SELECT y recuperamos los datos como JSON
+
+  const [results] = await conn.query(
+    `SELECT *
+      FROM proyectos p
+      JOIN authors a ON (p.id = a.fk_projects)
+      WHERE p.id = ?;`,
+    [req.params.id]
+  );
+  console.log("Resultados de la consulta:", results);
+
+  // 3. Cerramos la conexión
+
+  await conn.end();
+
+  res.json({
+    success: true,
+    card: {
+      name: results[0].name,
+      slogan: results[0].slogan,
+      desc: results[0].desc,
+      technologies: results[0].technologies,
+      demo: results[0].demo,
+      repo: results[0].repo,
+    },
   });
 });

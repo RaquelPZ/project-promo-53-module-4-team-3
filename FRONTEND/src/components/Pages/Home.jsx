@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../../styles/Home.scss";
 import Card from "../preview/Card";
 
-function Home({ projects }) {
+function Home({ projects, formData }) {
   return (
     <div className="container home">
       <main className="main_home">
@@ -13,8 +13,8 @@ function Home({ projects }) {
           </Link>
         </div>
         <ul className="card-list">
-          {projects.map((projectObj) => (
-            <li key={projectObj.autor}>
+          {projects.map((projectObj, index) => (
+            <li key={index}>
               <Card
                 name={projectObj.name}
                 slogan={projectObj.slogan}
@@ -26,6 +26,7 @@ function Home({ projects }) {
                 job={projectObj.job}
                 photo={projectObj.photo}
                 image={projectObj.image}
+                formData={formData}
               />
             </li>
           ))}
