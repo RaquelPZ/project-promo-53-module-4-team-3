@@ -9,7 +9,7 @@ const server = express();
 
 // Configuramos server para que funcione bien como API
 server.use(cors());
-server.use(express.json());
+server.use(express.json({ limit: "100mb" }));
 
 // Conexin a la base de datos
 
@@ -126,7 +126,52 @@ server.post("/api/projects", async (req, res) => {
   if (req.body.name === "") {
     res.json({
       sucess: false,
-      error: "Falta rellenar.",
+      error: "Falta rellenar nombre",
+    });
+  } else if (req.body.slogan === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar slogan",
+    });
+  } else if (req.body.repo === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar repo",
+    });
+  } else if (req.body.demo === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar demo",
+    });
+  } else if (req.body.technologies === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar technlogies",
+    });
+  } else if (req.body.descripción === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar descripción",
+    });
+  } else if (req.body.author === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar author",
+    });
+  } else if (req.body.job === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar job",
+    });
+  } else if (req.body.image === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar image",
+    });
+  } else if (req.body.photo === "") {
+    res.json({
+      sucess: false,
+      error: "Falta rellenar photo",
     });
     return;
   }
@@ -136,12 +181,12 @@ server.post("/api/projects", async (req, res) => {
   // INSERT en la bbdd
 
   const [resultsInsertProject] = await conn.execute(
-    `INSERT INTO projects (name, slogan, desc, technologies, demo, repo)
-       VALUES (?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO proyectos (name, slogan, descripción, technologies, demo, repo, photo)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
     [
       req.body.name,
       req.body.slogan,
-      req.body.desc,
+      req.body.descripción,
       req.body.technologies,
       req.body.demo,
       req.body.repo,
@@ -154,7 +199,7 @@ server.post("/api/projects", async (req, res) => {
   const projectId = resultsInsertProject.insertId;
 
   const [resultsInsertAuthor] = await conn.execute(
-    `INSERT INTO authors (author, job, image, fk_project)
+    `INSERT INTO authors (author, job, image, fk_projects)
     VALUES (?, ?, ?, ?)`,
     [req.body.author, req.body.job, req.body.image, projectId]
   );

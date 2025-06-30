@@ -24,8 +24,8 @@ function App() {
     repo: "",
     demo: "",
     technologies: "",
-    desc: "",
-    autor: "",
+    descripción: "",
+    author: "",
     job: "",
     image: "",
     photo: "",
@@ -52,7 +52,10 @@ function App() {
     setFormData({ ...formData, [field]: value });
   };
 
-  localStorage.setItem("newProject", JSON.stringify(formData));
+  useEffect(() => {
+    const { photo, image, ...rest } = formData; // quitar imágenes
+    localStorage.setItem("newProject", JSON.stringify(rest));
+  }, [formData]);
 
   const [newProject, setNewProject] = useState(
     JSON.parse(localStorage.getItem("newProject"))

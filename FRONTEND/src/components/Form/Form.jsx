@@ -7,9 +7,14 @@ function Form(props) {
     props.changeToAnotherState(field, value);
   };
 
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    props.onSubmit();
+  };
+
   return (
     <>
-      <form className="addForm" onSubmit={props.handleSubmit}>
+      <form className="addForm" onSubmit={handleSubmit}>
         <h2 className="title">Información</h2>
         <fieldset className="addForm__group">
           <legend className="addForm__title">
@@ -60,8 +65,8 @@ function Form(props) {
           <textarea
             className="addForm__input"
             type="text"
-            name="desc"
-            id="desc"
+            name="descripción"
+            id="descripción"
             placeholder="Descripción"
             rows="5"
             onChange={handleInput}
@@ -73,8 +78,8 @@ function Form(props) {
           <input
             className="addForm__input"
             type="text"
-            name="autor"
-            id="autor"
+            name="author"
+            id="author"
             placeholder="Nombre"
             onChange={handleInput}
           />
@@ -113,10 +118,7 @@ function Form(props) {
           )}
 
           {props.responseServer?.success === false && (
-            <p>
-             
-              {props.responseServer.error} 
-            </p>
+            <p>{props.responseServer.error}</p>
           )}
 
           {/* {props.cardInfo ? (

@@ -13,7 +13,7 @@ function Card({ formData }) {
           }}
         ></div>
         <p className="card__job">{formData.job || "Full stack Developer"}</p>
-        <h3 className="card__name">{formData.autor || "Emmelie Bjôrklund"}</h3>
+        <h3 className="card__name">{formData.author || "Emmelie Bjôrklund"}</h3>
         <div className="card-icons">
           <a
             className="icon icon__www"
@@ -43,7 +43,7 @@ function Card({ formData }) {
         </p>
         <h3 className="card__descriptionTitle">Product description</h3>
         <p className="card__description">
-          {formData.desc ||
+          {formData.descripción ||
             "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, quos? Itaque, molestias eveniet laudantium adipisci vitae ratione"}
         </p>
 
