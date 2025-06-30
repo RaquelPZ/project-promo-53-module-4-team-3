@@ -57,7 +57,7 @@ server.get("/api/projects", async (req, res) => {
 
   res.json(results);
 
-  /* res.sendFile(path.join(__dirname, "../FRONTEND/src/data/projects.json")); */
+  /*  res.sendFile(path.join(__dirname, "../FRONTEND/src/data/projects.json")); */
   /*
   const results = [
     {
