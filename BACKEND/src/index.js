@@ -11,6 +11,9 @@ const server = express();
 server.use(cors());
 server.use(express.json({ limit: "100mb" }));
 
+//Configuramos server para que funcione como serv de fich dinámicos
+server.set("view engine", "ejs");
+
 // Conexin a la base de datos
 
 async function getConnection() {
@@ -21,8 +24,6 @@ async function getConnection() {
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
   };
-
-  console.log(datosConexion);
 
   const conexion = await mysql.createConnection(datosConexion);
   await conexion.connect();
@@ -47,7 +48,6 @@ server.get("/api/projects", async (req, res) => {
       FROM proyectos p
       JOIN authors a ON (p.id = a.fk_projects);`
   );
-  console.log("Resultados de la consulta:", results);
 
   // 3. Cerramos la conexión
 
@@ -121,8 +121,6 @@ server.get("/api/projects", async (req, res) => {
 });
 
 server.post("/api/projects", async (req, res) => {
-  console.log("Petición recibida", req.body);
-
   if (req.body.name === "") {
     res.json({
       sucess: false,
@@ -194,8 +192,6 @@ server.post("/api/projects", async (req, res) => {
     ]
   );
 
-  console.log("Resultado de la inserción:", resultsInsertProject);
-
   const projectId = resultsInsertProject.insertId;
 
   const [resultsInsertAuthor] = await conn.execute(
@@ -203,7 +199,6 @@ server.post("/api/projects", async (req, res) => {
     VALUES (?, ?, ?, ?)`,
     [req.body.author, req.body.job, req.body.image, projectId]
   );
-  console.log("Resultado de la inserción del autor:", resultsInsertAuthor);
 
   await conn.end();
 
@@ -211,6 +206,8 @@ server.post("/api/projects", async (req, res) => {
     success: true,
     cardURL: "http://localhost:4000/projects/" + projectId,
   });
+
+  console.log(cardURL);
 });
 
 server.get("/api/projects/:id", async (req, res) => {
@@ -227,7 +224,6 @@ server.get("/api/projects/:id", async (req, res) => {
       WHERE p.id = ?;`,
     [req.params.id]
   );
-  console.log("Resultados de la consulta:", results);
 
   // 3. Cerramos la conexión
 
@@ -245,3 +241,31 @@ server.get("/api/projects/:id", async (req, res) => {
     },
   });
 });
+
+// renderizar la tarjeta generada
+server.get("/project/:id", async (req, res) => {
+  const conn = await getConnection();
+
+  const [results] = await conn.query(
+    `SELECT * FROM proyectos p JOIN authors a ON (p.id = a.fk_projects) WHERE p.id = ?;`,
+    [req.params.id]
+  );
+  console.log(results);
+
+  await conn.end();
+
+  const projectData = results[0];
+
+  res.render("detail", projectData);
+});
+
+/* app.get("/", (req, res) => {
+  const port = process.env.MYSQL_PORT;
+  res.render("index");
+}); */
+
+// SERVIDOR DE FICHEROS ESTÁTICOS PARA LA PÁGINA DE DETALLE
+
+server.use(express.static(path.join(__dirname, "../views_static")));
+
+server.use(express.static(path.join(__dirname, "../public_html")));

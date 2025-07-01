@@ -53,6 +53,16 @@ function Card({ formData }) {
           </p>
         </div>
       </div>
+      {cardInfo ? (
+        <a className="link" href={cardInfo} target="_blank">
+          {cardInfo}
+        </a>
+      ) : (
+        <p className="link">
+          Debes rellenar todos los campos del formulario para generar tu
+          tarjeta.
+        </p>
+      )}
     </article>
   );
 }

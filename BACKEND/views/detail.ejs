@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyectos molones</title>
+    <link rel="stylesheet" href="/main_detail.css" />
+  </head>
+
+  <body>
+    <div id="root">
+      <div class="container">
+        <header class="header">
+          <a
+            class="header__brand"
+            href="./"
+            title="Haz click para volver a la página inicial"
+            ><img
+              class="header__companyLogo"
+              alt="Logo proyectos molones"
+              src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20640%20512'%3e%3c!--!Font%20Awesome%20Free%206.5.1%20by%20@fontawesome%20-%20https://fontawesome.com%20License%20-%20https://fontawesome.com/license/free%20Copyright%202024%20Fonticons,%20Inc.--%3e%3cpath%20fill='%23ffffff'%20d='M64%2096c0-35.3%2028.7-64%2064-64H512c35.3%200%2064%2028.7%2064%2064V352H512V96H128V352H64V96zM0%20403.2C0%20392.6%208.6%20384%2019.2%20384H620.8c10.6%200%2019.2%208.6%2019.2%2019.2c0%2042.4-34.4%2076.8-76.8%2076.8H76.8C34.4%20480%200%20445.6%200%20403.2zM281%20209l-31%2031%2031%2031c9.4%209.4%209.4%2024.6%200%2033.9s-24.6%209.4-33.9%200l-48-48c-9.4-9.4-9.4-24.6%200-33.9l48-48c9.4-9.4%2024.6-9.4%2033.9%200s9.4%2024.6%200%2033.9zM393%20175l48%2048c9.4%209.4%209.4%2024.6%200%2033.9l-48%2048c-9.4%209.4-24.6%209.4-33.9%200s-9.4-24.6%200-33.9l31-31-31-31c-9.4-9.4-9.4-24.6%200-33.9s24.6-9.4%2033.9%200z'/%3e%3c/svg%3e"
+            />
+            <h1 class="header__title">Proyectos molones</h1> </a
+          ><img
+            class="logoSponsor"
+            alt="Logo Adalab"
+            src="/src/images/adalab.png"
+          />
+        </header>
+        <main class="main">
+          <section class="hero">
+            <h2 class="title">Proyectos molones</h2>
+            <p class="hero__text">
+              Escaparate en línea para recoger ideas a través de la tecnología
+            </p>
+            <a class="button--link" href="/" data-discover="true"
+              >Ver proyectos</a
+            >
+          </section>
+          <section class="preview">
+            <div
+              class="projectImage"
+              style="background-image: url('<%= photo %>')"
+            ></div>
+            <article class="card">
+              <h2 class="card__projectTitle">
+                <span class="card__projectTitle--text"
+                  >Personal project card</span
+                >
+              </h2>
+              <div class="card__author">
+                <div
+                  class="card__authorPhoto"
+                  style="background-image: url('<%= image %>')"
+                ></div>
+                <p class="card__job">Full stack Developer</p>
+                <h3 class="card__name">Emmelie Bjôrklund</h3>
+              </div>
+              <div class="card__project">
+                <h3 class="card__name"><%= name %></h3>
+                <p class="card__slogan"><%= slogan %></p>
+                <h3 class="card__descriptionTitle"><%= descripción %></h3>
+                <p class="card__description">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Nulla, quos? Itaque, molestias eveniet laudantium adipisci
+                  vitae ratione
+                </p>
+                <div class="card__technicalInfo">
+                  <p class="card__technologies">React JS - HTML - CSS</p>
+                  <a
+                    class="icon icon__www"
+                    href="<%= demo %>"
+                    title="Haz click para ver el proyecto online"
+                    >Web link</a
+                  ><a
+                    class="icon icon__github"
+                    href="<%= repo %>"
+                    title="Haz click para ver el código del proyecto"
+                    >GitHub link</a
+                  >
+                </div>
+              </div>
+            </article>
+          </section>
+        </main>
+        <footer class="footer">
+          <img
+            class="logoSponsor"
+            alt="Logo Adalab"
+            src="/src/images/adalab.png"
+          />
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
