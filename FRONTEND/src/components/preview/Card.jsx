@@ -1,4 +1,4 @@
-function Card({ formData, cardURL }) {
+function Card({ formData }) {
   return (
     <article className="card">
       <h2 className="card__projectTitle">
@@ -16,7 +16,7 @@ function Card({ formData, cardURL }) {
         <h3 className="card__name">{formData.author || "Emmelie Bjôrklund"}</h3>
         <div className="card-icons">
           <a
-            className="icon icon__www"
+            className="icon icon__github"
             href={formData.repo}
             target="_blank"
             title="Haz click para ver el proyecto online"
@@ -24,7 +24,7 @@ function Card({ formData, cardURL }) {
             {formData.demo || "Web link"}
           </a>
           <a
-            className="icon icon__github"
+            className="icon icon__www"
             href={formData.demo}
             target="_blank"
             title="Haz click para ver el código del proyecto"

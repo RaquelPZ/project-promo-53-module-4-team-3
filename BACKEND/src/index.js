@@ -250,7 +250,6 @@ server.get("/projects/:id", async (req, res) => {
     `SELECT * FROM proyectos p JOIN authors a ON (p.id = a.fk_projects) WHERE p.id = ?;`,
     [req.params.id]
   );
-  console.log(results);
 
   await conn.end();
 
