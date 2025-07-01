@@ -1,6 +1,6 @@
 import Card from "./Card";
 
-function Preview({ formData, cardInfo, changesImage }) {
+function Preview({ formData, cardURL, changesImage }) {
   return (
     <section className="preview">
       <div
@@ -10,14 +10,17 @@ function Preview({ formData, cardInfo, changesImage }) {
           backgroundImage: formData.photo ? `url(${formData.photo})` : null,
         }}
       ></div>
-      <Card
-        formData={formData}
-        cardInfo={cardInfo}
-        changesImage={changesImage}
-      />
-      <a className="link" href={cardInfo} target="_blank">
-        {cardInfo}
-      </a>
+      <Card formData={formData} cardURL={cardURL} changesImage={changesImage} />
+      {cardURL ? (
+        <a className="link" href={cardURL} target="_blank">
+          {cardURL}
+        </a>
+      ) : (
+        <p className="link">
+          Debes rellenar todos los campos del formulario para generar tu
+          tarjeta.
+        </p>
+      )}
     </section>
   );
 }

@@ -9,7 +9,7 @@ function CreatePage({
   changeToAnotherState,
   changeImage,
   changePhoto,
-  cardInfo,
+  cardURL,
 }) {
   return (
     <main className="main_create">
@@ -18,6 +18,7 @@ function CreatePage({
       <Preview
         formData={formData}
         changeToAnotherState={changeToAnotherState}
+        cardURL={cardURL}
       />
 
       <Form
@@ -25,7 +26,7 @@ function CreatePage({
         handleSubmit={handleSubmit}
         changePhoto={changePhoto}
         changeImage={changeImage}
-        cardInfo={cardInfo}
+        cardURL={cardURL}
       />
     </main>
   );

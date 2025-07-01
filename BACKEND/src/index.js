@@ -243,7 +243,7 @@ server.get("/api/projects/:id", async (req, res) => {
 });
 
 // renderizar la tarjeta generada
-server.get("/project/:id", async (req, res) => {
+server.get("/projects/:id", async (req, res) => {
   const conn = await getConnection();
 
   const [results] = await conn.query(
