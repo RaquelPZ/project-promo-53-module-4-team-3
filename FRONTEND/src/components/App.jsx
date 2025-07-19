@@ -93,9 +93,6 @@ function App() {
     return;
   };
 
-  //Copiar el objToSend de nuestro proyecto
-  //Copiar el useEffect de nuestro proyecto
-
   return (
     <div className="container">
       <Header iconLaptop={iconLaptop} logoAdalab={logoAdalab} />
