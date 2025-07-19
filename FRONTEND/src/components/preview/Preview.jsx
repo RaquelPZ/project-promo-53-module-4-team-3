@@ -12,11 +12,11 @@ function Preview({ formData, cardURL, changesImage }) {
       ></div>
       <Card formData={formData} cardURL={cardURL} changesImage={changesImage} />
       {cardURL ? (
-        <a className="link" href={cardURL} target="_blank">
+        <a className="cardURL" href={cardURL} target="_blank">
           {cardURL}
         </a>
       ) : (
-        <p className="link">
+        <p className="cardURL">
           Debes rellenar todos los campos del formulario para generar tu
           tarjeta.
         </p>
