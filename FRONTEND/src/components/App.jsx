@@ -63,7 +63,7 @@ function App() {
 
   // Listado de proyectos
   useEffect(() => {
-    fetch("http://localhost:4000/api/projects")
+    fetch("https://proyecto-molon-2-0-api.onrender.com/api/projects")
       .then((res) => res.json())
       .then((projectsData) => {
         setProjects(projectsData);
@@ -73,7 +73,7 @@ function App() {
   const handleSubmit = (ev) => {
     ev.preventDefault();
 
-    fetch("http://localhost:4000/api/projects", {
+    fetch("https://proyecto-molon-2-0-api.onrender.com/api/projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
