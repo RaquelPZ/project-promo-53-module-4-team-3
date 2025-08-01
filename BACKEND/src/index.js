@@ -8,7 +8,17 @@ require("dotenv").config();
 const server = express();
 
 // Configuramos server para que funcione bien como API
-server.use(cors());
+server.use(
+  cors({
+    origin: [
+      "https://proyecto-molon-2-0-sgwe.onrender.com",
+      "http://localhost:5173",
+    ],
+    methods: ["GET", "POST"],
+    credentials: false,
+  })
+);
+
 server.use(express.json({ limit: "100mb" }));
 
 //Configuramos server para que funcione como serv de fich dinámicos
@@ -136,12 +146,12 @@ server.post("/api/projects", async (req, res) => {
 
   await conn.end();
 
+  const cardURL = `https://proyecto-molon-2-0-api.onrender.com/projects/${projectId}`;
+
   res.json({
     success: true,
-    cardURL: "http://localhost:4000/projects/" + projectId,
+    cardURL,
   });
-
-  console.log(cardURL);
 });
 
 // SERVIDOR DE PLANTILLAS
